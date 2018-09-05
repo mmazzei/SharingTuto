@@ -4,16 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>SharingTuto.xcscheme</key>
+		<key>Kingfisher.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>0</integer>
 		</dict>
-		<key>SharingTutoExtension.xcscheme</key>
+		<key>Pods-SharingTuto.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict/>
 </dict>
 </plist>

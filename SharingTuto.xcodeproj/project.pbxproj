@@ -7,13 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10445B7A08C95A91958E5374 /* Pods_SharingTuto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E52F12F21D31A466512698 /* Pods_SharingTuto.framework */; };
 		4D40E57E2139823700F2040A /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40E57D2139823700F2040A /* ShareViewController.swift */; };
 		4D40E5812139823700F2040A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D40E57F2139823700F2040A /* MainInterface.storyboard */; };
 		4D40E5852139823700F2040A /* SharingTutoExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4D40E57B2139823700F2040A /* SharingTutoExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4D40E58B2139888800F2040A /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40E58A2139888800F2040A /* Album.swift */; };
 		4D40E58D213989B400F2040A /* ChooseAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40E58C213989B400F2040A /* ChooseAlbumViewController.swift */; };
+		4DBA976B21405B7B0056A019 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBA976A21405B7B0056A019 /* AlbumViewController.swift */; };
+		4DBA976D21405CA00056A019 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBA976C21405CA00056A019 /* Image.swift */; };
+		4DBA977021405E510056A019 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBA976F21405E510056A019 /* ImageCell.swift */; };
+		4DC057A821402C2E00F13562 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC057A721402C2E00F13562 /* HomeViewController.swift */; };
+		4DC057AB21402F8B00F13562 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC057AA21402F8B00F13562 /* User.swift */; };
+		4DC057AE214031DE00F13562 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC057AD214031DE00F13562 /* Environment.swift */; };
+		4DC057B0214042B000F13562 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC057AF214042B000F13562 /* Credentials.swift */; };
+		4DC057B321404BFA00F13562 /* ImgurAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC057B221404BFA00F13562 /* ImgurAPI.swift */; };
+		4DC057B5214052C600F13562 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC057B4214052C600F13562 /* Album.swift */; };
+		4DC057B7214054AF00F13562 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC057B6214054AF00F13562 /* AlbumsViewController.swift */; };
 		4DDCEF8D21304D0200C39C15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDCEF8C21304D0200C39C15 /* AppDelegate.swift */; };
-		4DDCEF8F21304D0200C39C15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDCEF8E21304D0200C39C15 /* ViewController.swift */; };
+		4DDCEF8F21304D0200C39C15 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDCEF8E21304D0200C39C15 /* LogInViewController.swift */; };
 		4DDCEF9221304D0200C39C15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DDCEF9021304D0200C39C15 /* Main.storyboard */; };
 		4DDCEF9421304D0500C39C15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DDCEF9321304D0500C39C15 /* Assets.xcassets */; };
 		4DDCEF9721304D0500C39C15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DDCEF9521304D0500C39C15 /* LaunchScreen.storyboard */; };
@@ -44,19 +55,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		41B8F61ECF4DAE6B94021800 /* Pods-SharingTuto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharingTuto.release.xcconfig"; path = "Pods/Target Support Files/Pods-SharingTuto/Pods-SharingTuto.release.xcconfig"; sourceTree = "<group>"; };
 		4D40E57B2139823700F2040A /* SharingTutoExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SharingTutoExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D40E57D2139823700F2040A /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		4D40E5802139823700F2040A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		4D40E5822139823700F2040A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D40E58A2139888800F2040A /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		4D40E58C213989B400F2040A /* ChooseAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAlbumViewController.swift; sourceTree = "<group>"; };
+		4DBA976A21405B7B0056A019 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		4DBA976C21405CA00056A019 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		4DBA976F21405E510056A019 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		4DC057A721402C2E00F13562 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4DC057AA21402F8B00F13562 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4DC057AD214031DE00F13562 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		4DC057AF214042B000F13562 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
+		4DC057B221404BFA00F13562 /* ImgurAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurAPI.swift; sourceTree = "<group>"; };
+		4DC057B4214052C600F13562 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		4DC057B6214054AF00F13562 /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
 		4DDCEF8921304D0200C39C15 /* SharingTuto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SharingTuto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DDCEF8C21304D0200C39C15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4DDCEF8E21304D0200C39C15 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4DDCEF8E21304D0200C39C15 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		4DDCEF9121304D0200C39C15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4DDCEF9321304D0500C39C15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DDCEF9621304D0500C39C15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DDCEF9821304D0500C39C15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C86831D1488733EC25A0613 /* Pods-SharingTuto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharingTuto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SharingTuto/Pods-SharingTuto.debug.xcconfig"; sourceTree = "<group>"; };
+		D0E52F12F21D31A466512698 /* Pods_SharingTuto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharingTuto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10445B7A08C95A91958E5374 /* Pods_SharingTuto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,12 +114,61 @@
 			path = SharingTutoExtension;
 			sourceTree = "<group>";
 		};
+		4DBA976E21405E420056A019 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4DBA976F21405E510056A019 /* ImageCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4DC057A621402BDF00F13562 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4DC057A721402C2E00F13562 /* HomeViewController.swift */,
+				4DDCEF8E21304D0200C39C15 /* LogInViewController.swift */,
+				4DC057B6214054AF00F13562 /* AlbumsViewController.swift */,
+				4DBA976A21405B7B0056A019 /* AlbumViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4DC057A921402F8200F13562 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4DC057AA21402F8B00F13562 /* User.swift */,
+				4DC057AF214042B000F13562 /* Credentials.swift */,
+				4DC057B4214052C600F13562 /* Album.swift */,
+				4DBA976C21405CA00056A019 /* Image.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4DC057AC2140319A00F13562 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4DDCEF9321304D0500C39C15 /* Assets.xcassets */,
+				4DDCEF9521304D0500C39C15 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4DC057B121404BEB00F13562 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				4DC057B221404BFA00F13562 /* ImgurAPI.swift */,
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
 		4DDCEF8021304D0200C39C15 = {
 			isa = PBXGroup;
 			children = (
 				4DDCEF8B21304D0200C39C15 /* SharingTuto */,
 				4D40E57C2139823700F2040A /* SharingTutoExtension */,
 				4DDCEF8A21304D0200C39C15 /* Products */,
+				5C69C3D01E70633B41271009 /* Pods */,
+				BA6DBDD8C57FD9FCB6B4349D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,14 +184,34 @@
 		4DDCEF8B21304D0200C39C15 /* SharingTuto */ = {
 			isa = PBXGroup;
 			children = (
+				4DC057B121404BEB00F13562 /* APIClient */,
+				4DC057AC2140319A00F13562 /* Supporting Files */,
+				4DC057A921402F8200F13562 /* Model */,
+				4DBA976E21405E420056A019 /* View */,
+				4DC057A621402BDF00F13562 /* ViewController */,
+				4DC057AD214031DE00F13562 /* Environment.swift */,
 				4DDCEF8C21304D0200C39C15 /* AppDelegate.swift */,
-				4DDCEF8E21304D0200C39C15 /* ViewController.swift */,
 				4DDCEF9021304D0200C39C15 /* Main.storyboard */,
-				4DDCEF9321304D0500C39C15 /* Assets.xcassets */,
-				4DDCEF9521304D0500C39C15 /* LaunchScreen.storyboard */,
 				4DDCEF9821304D0500C39C15 /* Info.plist */,
 			);
 			path = SharingTuto;
+			sourceTree = "<group>";
+		};
+		5C69C3D01E70633B41271009 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6C86831D1488733EC25A0613 /* Pods-SharingTuto.debug.xcconfig */,
+				41B8F61ECF4DAE6B94021800 /* Pods-SharingTuto.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BA6DBDD8C57FD9FCB6B4349D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0E52F12F21D31A466512698 /* Pods_SharingTuto.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,10 +238,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4DDCEF9B21304D0500C39C15 /* Build configuration list for PBXNativeTarget "SharingTuto" */;
 			buildPhases = (
+				A904D98CB515230DA4D8455C /* [CP] Check Pods Manifest.lock */,
 				4DDCEF8521304D0200C39C15 /* Sources */,
 				4DDCEF8621304D0200C39C15 /* Frameworks */,
 				4DDCEF8721304D0200C39C15 /* Resources */,
 				4D40E5892139823700F2040A /* Embed App Extensions */,
+				54CB98C1790B14EB7EFD84A4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -217,6 +313,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		54CB98C1790B14EB7EFD84A4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SharingTuto/Pods-SharingTuto-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SharingTuto/Pods-SharingTuto-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A904D98CB515230DA4D8455C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SharingTuto-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4D40E5772139823700F2040A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -232,8 +367,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DDCEF8F21304D0200C39C15 /* ViewController.swift in Sources */,
+				4DC057B0214042B000F13562 /* Credentials.swift in Sources */,
+				4DC057AB21402F8B00F13562 /* User.swift in Sources */,
+				4DC057B7214054AF00F13562 /* AlbumsViewController.swift in Sources */,
+				4DDCEF8F21304D0200C39C15 /* LogInViewController.swift in Sources */,
+				4DC057B321404BFA00F13562 /* ImgurAPI.swift in Sources */,
+				4DBA977021405E510056A019 /* ImageCell.swift in Sources */,
 				4DDCEF8D21304D0200C39C15 /* AppDelegate.swift in Sources */,
+				4DBA976B21405B7B0056A019 /* AlbumViewController.swift in Sources */,
+				4DC057A821402C2E00F13562 /* HomeViewController.swift in Sources */,
+				4DC057AE214031DE00F13562 /* Environment.swift in Sources */,
+				4DBA976D21405CA00056A019 /* Image.swift in Sources */,
+				4DC057B5214052C600F13562 /* Album.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +574,7 @@
 		};
 		4DDCEF9C21304D0500C39C15 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6C86831D1488733EC25A0613 /* Pods-SharingTuto.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -448,6 +594,7 @@
 		};
 		4DDCEF9D21304D0500C39C15 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41B8F61ECF4DAE6B94021800 /* Pods-SharingTuto.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
