@@ -199,7 +199,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="140" height="134"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="15"/>
+                                                    <integer key="value" value="8"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             </userDefinedRuntimeAttributes>
@@ -226,6 +226,13 @@
                             <outlet property="delegate" destination="TEh-HI-RMv" id="Rb9-48-maL"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="Ibi-VQ-qUa">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oET-jD-dkz">
+                            <connections>
+                                <action selector="showImagePicker:" destination="TEh-HI-RMv" id="mWj-g6-AAR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6cO-Cy-6aC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

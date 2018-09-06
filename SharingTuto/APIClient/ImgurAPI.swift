@@ -25,6 +25,10 @@ private struct GetAlbumImagesResponse: Codable {
     var data: [Image]
 }
 
+private struct ImageUploadResponse: Codable {
+    var data: Image
+}
+
 /// Implements requests to some of the endpoints defined in https://apidocs.imgur.com
 // TODO - Refactor the repeated code
 struct ImgurAPI {
@@ -84,6 +88,34 @@ struct ImgurAPI {
             do {
                 let imagesInfo = try JSONDecoder().decode(GetAlbumImagesResponse.self, from: imagesData)
                 callback(.success(imagesInfo.data))
+            } catch {
+                callback(.error(error))
+            }
+            }.resume()
+    }
+
+    static func uploadImage(_ imageData: Data, titled title: String, into album: Album, _ callback: @escaping (Result<Image>) -> Void) {
+        var urlComponents = URLComponents(string: Constants.apiBaseUrl)!
+        urlComponents.path.append("/image")
+        urlComponents.queryItems = [
+            URLQueryItem(name: "album", value: album.id),
+            URLQueryItem(name: "title", value: title)
+        ]
+        var request = URLRequest(url: urlComponents.url!)
+        request.httpMethod = "POST"
+        request.addAuthHeader()
+        request.setValue("image/jpeg", forHTTPHeaderField: "content-type")
+        request.httpBody = imageData
+
+        URLSession.shared.uploadTask(with: request, from: imageData) { (data, response, error) in
+            guard error == nil, let imagesData = data else {
+                callback(.error(error!))
+                return
+            }
+
+            do {
+                let imageInfo = try JSONDecoder().decode(ImageUploadResponse.self, from: imagesData)
+                callback(.success(imageInfo.data))
             } catch {
                 callback(.error(error))
             }
