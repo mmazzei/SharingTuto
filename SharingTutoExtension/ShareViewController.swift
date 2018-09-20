@@ -8,11 +8,12 @@
 
 import UIKit
 import Social
+import SharingTutoFwk
 
 class ShareViewController: SLComposeServiceViewController {
     var album: Album? {
         didSet {
-            albumCofigurationItem.value = album?.name ?? "..."
+            albumCofigurationItem.value = album?.title ?? "..."
             validateContent()
         }
     }

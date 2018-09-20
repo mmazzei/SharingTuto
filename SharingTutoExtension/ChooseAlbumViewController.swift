@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SharingTutoFwk
 
 protocol ChooseAlbumViewControllerDelegate: class {
     func chooseAlbumViewController(_ viewController: ChooseAlbumViewController, didSelect album: Album)
@@ -14,34 +15,81 @@ protocol ChooseAlbumViewControllerDelegate: class {
 
 /// Presents the albums list allowing to select only one and then notifying the delegate.
 class ChooseAlbumViewController: UITableViewController {
+    private enum State {
+        case loaded(albums: [Album])
+        case loading
+
+        var albums: [Album] {
+            switch self {
+            case .loaded(let albums): return albums
+            default: return []
+            }
+        }
+    }
     private static let cellIdentifier = "ChooseAlbumViewControllerCell"
-    private static let mockedAlbums = [
-        Album(id: 1, name: "Cumpleaños"),
-        Album(id: 2, name: "Navidad"),
-        Album(id: 3, name: "Vacaciones"),
-        Album(id: 4, name: "Familia"),
-        Album(id: 5, name: "Mascotas")
-    ]
+    private var state: State! {
+        didSet {
+            DispatchQueue.main.async {
+                self.updateViewFromState()
+            }
+        }
+    }
 
     weak var delegate: ChooseAlbumViewControllerDelegate?
     /// Currently selected album, to be highlighted in the UI
     var selectedAlbum: Album?
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        state = .loading
+        updateStateFromModel()
+    }
+
+
+    private func updateStateFromModel() {
+        guard let credentials = Environment.credentials else {
+            return
+        }
+
+        state = .loading
+        ImgurAPI.getAlbums(username: credentials.accountUsername) {[unowned self] result in
+            switch result {
+            case .error(let error):
+                print(error)
+                // self.state = .loggedOut
+            // TODO - Go back
+            case .success(let albums):
+                self.state = .loaded(albums: albums)
+            }
+        }
+    }
+
+    private func updateViewFromState() {
+        switch state! {
+        case .loading:
+            // TODO
+            break
+
+        case .loaded:
+            tableView.reloadData()
+        }
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ChooseAlbumViewController.mockedAlbums.count
+        return state.albums.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChooseAlbumViewController.cellIdentifier)
             ?? UITableViewCell(style: .default, reuseIdentifier: ChooseAlbumViewController.cellIdentifier)
 
-        let album = ChooseAlbumViewController.mockedAlbums[indexPath.row]
-        cell.textLabel?.text = album.name
-        cell.accessoryType = album == selectedAlbum ? .checkmark : .none
+        let album = state.albums[indexPath.row]
+        cell.textLabel?.text = album.title
+        cell.accessoryType = album.id == selectedAlbum?.id ? .checkmark : .none
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.chooseAlbumViewController(self, didSelect: ChooseAlbumViewController.mockedAlbums[indexPath.row])
+        delegate?.chooseAlbumViewController(self, didSelect: state.albums[indexPath.row])
     }
 }

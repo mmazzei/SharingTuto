@@ -21,7 +21,6 @@
 		4D40E57E2139823700F2040A /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40E57D2139823700F2040A /* ShareViewController.swift */; };
 		4D40E5812139823700F2040A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D40E57F2139823700F2040A /* MainInterface.storyboard */; };
 		4D40E5852139823700F2040A /* SharingTutoExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4D40E57B2139823700F2040A /* SharingTutoExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		4D40E58B2139888800F2040A /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40E58A2139888800F2040A /* Album.swift */; };
 		4D40E58D213989B400F2040A /* ChooseAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40E58C213989B400F2040A /* ChooseAlbumViewController.swift */; };
 		4DBA976B21405B7B0056A019 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBA976A21405B7B0056A019 /* AlbumViewController.swift */; };
 		4DBA977021405E510056A019 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBA976F21405E510056A019 /* ImageCell.swift */; };
@@ -89,11 +88,11 @@
 		4D17281521545CD7003256BC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4D17281621545CD7003256BC /* Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		4D17281D21545F67003256BC /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		4D17281F215462AD003256BC /* SharingTutoExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SharingTutoExtension.entitlements; sourceTree = "<group>"; };
 		4D40E57B2139823700F2040A /* SharingTutoExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SharingTutoExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D40E57D2139823700F2040A /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		4D40E5802139823700F2040A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		4D40E5822139823700F2040A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4D40E58A2139888800F2040A /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		4D40E58C213989B400F2040A /* ChooseAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAlbumViewController.swift; sourceTree = "<group>"; };
 		4DBA976A21405B7B0056A019 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		4DBA976F21405E510056A019 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
@@ -172,7 +171,7 @@
 		4D40E57C2139823700F2040A /* SharingTutoExtension */ = {
 			isa = PBXGroup;
 			children = (
-				4D40E58A2139888800F2040A /* Album.swift */,
+				4D17281F215462AD003256BC /* SharingTutoExtension.entitlements */,
 				4D40E57D2139823700F2040A /* ShareViewController.swift */,
 				4D40E57F2139823700F2040A /* MainInterface.storyboard */,
 				4D40E5822139823700F2040A /* Info.plist */,
@@ -349,6 +348,11 @@
 					};
 					4D40E57A2139823700F2040A = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					4DDCEF8821304D0200C39C15 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -468,7 +472,6 @@
 			files = (
 				4D40E57E2139823700F2040A /* ShareViewController.swift in Sources */,
 				4D40E58D213989B400F2040A /* ChooseAlbumViewController.swift in Sources */,
-				4D40E58B2139888800F2040A /* Album.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,6 +592,7 @@
 		4D40E5862139823700F2040A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SharingTutoExtension/SharingTutoExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23LF6QCF4J;
 				INFOPLIST_FILE = SharingTutoExtension/Info.plist;
@@ -608,6 +612,7 @@
 		4D40E5872139823700F2040A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SharingTutoExtension/SharingTutoExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23LF6QCF4J;
 				INFOPLIST_FILE = SharingTutoExtension/Info.plist;
