@@ -107,19 +107,20 @@ struct ImgurAPI {
         request.setValue("image/jpeg", forHTTPHeaderField: "content-type")
         request.httpBody = imageData
 
-        URLSession.shared.uploadTask(with: request, from: imageData) { (data, response, error) in
-            guard error == nil, let imagesData = data else {
-                callback(.error(error!))
-                return
-            }
+        BackgroundSession.shared.uploadTask(with: request, from: imageData) { result in
+            switch result {
+            case .success(let imageData):
+                do {
+                    let imageInfo = try JSONDecoder().decode(ImageUploadResponse.self, from: imageData!)
+                    callback(.success(imageInfo.data))
+                } catch {
+                    callback(.error(error))
+                }
 
-            do {
-                let imageInfo = try JSONDecoder().decode(ImageUploadResponse.self, from: imagesData)
-                callback(.success(imageInfo.data))
-            } catch {
+            case .error(let error):
                 callback(.error(error))
             }
-            }.resume()
+        }
     }
 }
 

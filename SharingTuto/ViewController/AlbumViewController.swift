@@ -43,7 +43,16 @@ class AlbumViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         state = .loading
+        NotificationCenter.default.addObserver(self, selector: #selector(uploadFinished), name: Constants.uploadFinishedNotification, object: nil)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         updateStateFromModel()
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewDidLayoutSubviews() {
@@ -68,6 +77,8 @@ class AlbumViewController: UICollectionViewController {
                 print(error)
                 // self.state = .loggedOut
                 // TODO - Go back
+            case .success(let images) where BackgroundSession.shared.isUploadingNow:
+                self.state = .uploading(currentImages: images)
             case .success(let images):
                 self.state = .ready(images: images)
             }
@@ -77,12 +88,15 @@ class AlbumViewController: UICollectionViewController {
     private func updateViewFromState() {
         switch state! {
         case .loading:
-            // TODO
-            break
+            let activityIndicator = UIActivityIndicatorView()
+            let newBarButtonItem = UIBarButtonItem(customView: activityIndicator)
+            navigationItem.rightBarButtonItem = newBarButtonItem
+            activityIndicator.activityIndicatorViewStyle = .gray
+            activityIndicator.startAnimating()
 
         case .ready:
             collectionView?.reloadData()
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showImagePicker(_:)))
+            navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showImagePicker(_:)))]
 
         case .imageSelected:
             askForImageTitle()
@@ -93,7 +107,25 @@ class AlbumViewController: UICollectionViewController {
             navigationItem.rightBarButtonItem = newBarButtonItem
             activityIndicator.activityIndicatorViewStyle = .gray
             activityIndicator.startAnimating()
+
+            let cancelUploadButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelUpload))
+            navigationItem.rightBarButtonItems?.append(cancelUploadButton)
+
+            collectionView?.reloadData()
         }
+    }
+
+    @objc private func uploadFinished() {
+        switch state! {
+        case .uploading:
+            updateStateFromModel()
+        default:
+            break
+        }
+    }
+
+    @objc private func cancelUpload() {
+        BackgroundSession.shared.cancelUpload()
     }
 
     private func askForImageTitle() {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		10445B7A08C95A91958E5374 /* Pods_SharingTuto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E52F12F21D31A466512698 /* Pods_SharingTuto.framework */; };
+		4D3CAD6A2149449C00A35E77 /* BackgroundSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3CAD692149449C00A35E77 /* BackgroundSession.swift */; };
 		4D40E57E2139823700F2040A /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40E57D2139823700F2040A /* ShareViewController.swift */; };
 		4D40E5812139823700F2040A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D40E57F2139823700F2040A /* MainInterface.storyboard */; };
 		4D40E5852139823700F2040A /* SharingTutoExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4D40E57B2139823700F2040A /* SharingTutoExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		41B8F61ECF4DAE6B94021800 /* Pods-SharingTuto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharingTuto.release.xcconfig"; path = "Pods/Target Support Files/Pods-SharingTuto/Pods-SharingTuto.release.xcconfig"; sourceTree = "<group>"; };
+		4D3CAD692149449C00A35E77 /* BackgroundSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSession.swift; sourceTree = "<group>"; };
 		4D40E57B2139823700F2040A /* SharingTutoExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SharingTutoExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D40E57D2139823700F2040A /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		4D40E5802139823700F2040A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				4DC057B221404BFA00F13562 /* ImgurAPI.swift */,
+				4D3CAD692149449C00A35E77 /* BackgroundSession.swift */,
 			);
 			path = APIClient;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D3CAD6A2149449C00A35E77 /* BackgroundSession.swift in Sources */,
 				4DC057B0214042B000F13562 /* Credentials.swift in Sources */,
 				4DC057AB21402F8B00F13562 /* User.swift in Sources */,
 				4DC057B7214054AF00F13562 /* AlbumsViewController.swift in Sources */,

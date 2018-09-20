@@ -10,11 +10,20 @@ import Foundation
 
 struct Constants {
     static let apiBaseUrl = "https://api.imgur.com/3"
+
+    static let uploadFinishedNotification = Notification.Name("SharingTuto.uploadFinishedNotification")
 }
 
 struct Environment {
     private init() {}
     private static let credentialsKey = "SharingTuto.credentials"
+    private static let backgroundUrlSessionIdentifier = "SharingTuto.backgroundUrlSession"
+    private static let uploadTasksRunningKey = "SharingTuto.uploadTasksRunning"
+
+    static func backgroundSession(withDelegate delegate: URLSessionDelegate) -> URLSession {
+        let sessionConfig = URLSessionConfiguration.background(withIdentifier: backgroundUrlSessionIdentifier)
+        return URLSession(configuration: sessionConfig, delegate: delegate, delegateQueue: nil)
+    }
 
     static var credentials: Credentials? {
         get {
@@ -28,5 +37,10 @@ struct Environment {
             let credentialsData = try? PropertyListEncoder().encode(newValue)
             UserDefaults.standard.set(credentialsData, forKey: credentialsKey)
         }
+    }
+
+    static var uploadTasksRunning: Bool {
+        get { return UserDefaults.standard.bool(forKey: uploadTasksRunningKey) }
+        set { UserDefaults.standard.set(newValue, forKey: uploadTasksRunningKey) }
     }
 }
