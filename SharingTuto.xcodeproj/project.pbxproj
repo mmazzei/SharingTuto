@@ -57,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		41B8F61ECF4DAE6B94021800 /* Pods-SharingTuto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharingTuto.release.xcconfig"; path = "Pods/Target Support Files/Pods-SharingTuto/Pods-SharingTuto.release.xcconfig"; sourceTree = "<group>"; };
+		4D1727FC2154564E003256BC /* SharingTuto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SharingTuto.entitlements; sourceTree = "<group>"; };
 		4D3CAD692149449C00A35E77 /* BackgroundSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSession.swift; sourceTree = "<group>"; };
 		4D40E57B2139823700F2040A /* SharingTutoExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SharingTutoExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D40E57D2139823700F2040A /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +188,7 @@
 		4DDCEF8B21304D0200C39C15 /* SharingTuto */ = {
 			isa = PBXGroup;
 			children = (
+				4D1727FC2154564E003256BC /* SharingTuto.entitlements */,
 				4DC057B121404BEB00F13562 /* APIClient */,
 				4DC057AC2140319A00F13562 /* Supporting Files */,
 				4DC057A921402F8200F13562 /* Model */,
@@ -273,6 +275,11 @@
 					};
 					4DDCEF8821304D0200C39C15 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -582,6 +589,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SharingTuto/SharingTuto.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23LF6QCF4J;
 				INFOPLIST_FILE = SharingTuto/Info.plist;
@@ -602,6 +610,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SharingTuto/SharingTuto.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23LF6QCF4J;
 				INFOPLIST_FILE = SharingTuto/Info.plist;
