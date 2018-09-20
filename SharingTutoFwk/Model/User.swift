@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct User: Codable {
-    let id: Int
-    let url: String?
-    let bio: String?
-    let avatar: URL?
+public struct User: Codable {
+    public let id: Int
+    public let url: String?
+    public let bio: String?
+    public let avatar: URL?
 }

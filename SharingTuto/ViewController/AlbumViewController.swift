@@ -8,6 +8,7 @@
 
 import UIKit
 import MobileCoreServices
+import SharingTutoFwk
 
 class AlbumViewController: UICollectionViewController {
     private enum State {

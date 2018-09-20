@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Result<T> {
+public enum Result<T> {
     case success(T)
     case error(Error)
 }
@@ -31,10 +31,10 @@ private struct ImageUploadResponse: Codable {
 
 /// Implements requests to some of the endpoints defined in https://apidocs.imgur.com
 // TODO - Refactor the repeated code
-struct ImgurAPI {
+public struct ImgurAPI {
     private init() {}
 
-    static func getUserInfo(username: String, _ callback: @escaping (Result<User>) -> Void) {
+    public static func getUserInfo(username: String, _ callback: @escaping (Result<User>) -> Void) {
         let url = URL(string: Constants.apiBaseUrl)!.appendingPathComponent("/account/\(username)")
         var request = URLRequest(url: url)
         request.addAuthHeader()
@@ -54,7 +54,7 @@ struct ImgurAPI {
             }.resume()
     }
 
-    static func getAlbums(username: String, _ callback: @escaping (Result<[Album]>) -> Void) {
+    public static func getAlbums(username: String, _ callback: @escaping (Result<[Album]>) -> Void) {
         let url = URL(string: Constants.apiBaseUrl)!.appendingPathComponent("/account/\(username)/albums")
         var request = URLRequest(url: url)
         request.addAuthHeader()
@@ -74,7 +74,7 @@ struct ImgurAPI {
             }.resume()
     }
 
-    static func getAlbumImages(username: String, album: Album, _ callback: @escaping (Result<[Image]>) -> Void) {
+    public static func getAlbumImages(username: String, album: Album, _ callback: @escaping (Result<[Image]>) -> Void) {
         let url = URL(string: Constants.apiBaseUrl)!.appendingPathComponent("/account/\(username)/album/\(album.id)/images")
         var request = URLRequest(url: url)
         request.addAuthHeader()
@@ -94,7 +94,7 @@ struct ImgurAPI {
             }.resume()
     }
 
-    static func uploadImage(_ imageData: Data, titled title: String, into album: Album, _ callback: @escaping (Result<Image>) -> Void) {
+    public static func uploadImage(_ imageData: Data, titled title: String, into album: Album, _ callback: @escaping (Result<Image>) -> Void) {
         var urlComponents = URLComponents(string: Constants.apiBaseUrl)!
         urlComponents.path.append("/image")
         urlComponents.queryItems = [

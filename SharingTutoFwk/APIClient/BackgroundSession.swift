@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BackgroundSession: NSObject {
+public class BackgroundSession: NSObject {
     private struct CurrentUpload {
         var responseData: Data?
         var callback: ((Result<Data?>) -> Void)?
@@ -17,8 +17,8 @@ class BackgroundSession: NSObject {
         var temporaryFile: URL
     }
 
-    static let shared = BackgroundSession()
-    var isUploadingNow: Bool {
+    public static let shared = BackgroundSession()
+    public var isUploadingNow: Bool {
         return Environment.uploadTasksRunning
     }
 
@@ -36,7 +36,7 @@ class BackgroundSession: NSObject {
         super.init()
     }
 
-    func uploadTask(with request: URLRequest, from data: Data, callback: @escaping (Result<Data?>) -> Void) {
+    public func uploadTask(with request: URLRequest, from data: Data, callback: @escaping (Result<Data?>) -> Void) {
         guard session == nil, !Environment.uploadTasksRunning else {
             print("🚀 BackgroundSession - Another upload is being processed right now, please retry again later.")
             return
@@ -62,7 +62,7 @@ class BackgroundSession: NSObject {
         Environment.uploadTasksRunning = true
     }
 
-    func cancelUpload() {
+    public func cancelUpload() {
         print("🚀 BackgroundSession - cancelling a task")
         currentUpload = nil
         session?.invalidateAndCancel()
@@ -75,7 +75,7 @@ class BackgroundSession: NSObject {
     }
 
     /// This is only to be called from the AppDelegate `handleEventsForBackgroundURLSession` method.
-    func handleEvents(completionHandler: @escaping () -> Void) {
+    public func handleEvents(completionHandler: @escaping () -> Void) {
         print("🚀 BackgroundSession - handleEvents")
         backgroundCompletionHandler = completionHandler
         // In case the app has been terminated and opened to finish processing the BG events.
@@ -86,7 +86,7 @@ class BackgroundSession: NSObject {
 }
 
 extension BackgroundSession: URLSessionDelegate, URLSessionDataDelegate {
-    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+    public func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         print("🚀 BackgroundSession - urlSessionDidFinishEvents")
         session.finishTasksAndInvalidate()
 
@@ -101,7 +101,7 @@ extension BackgroundSession: URLSessionDelegate, URLSessionDataDelegate {
 
     // It doesn't matter how the upload finishes or where it started, this method is called at the end (we have at most one upload running at any given time).
     // So it is here where we launches notifications or update the environment flags from.
-    func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
+    public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
         print("🚀 BackgroundSession - urlSession:didBecomeInvalidWithError \(String(describing: error))")
 
         if error != nil {
@@ -114,7 +114,7 @@ extension BackgroundSession: URLSessionDelegate, URLSessionDataDelegate {
         NotificationCenter.default.post(Notification(name: Constants.uploadFinishedNotification))
     }
 
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         print("🚀 BackgroundSession - urlSession:task:didCompleteWithError \(String(describing: error))")
         if error == nil {
             currentUpload?.callback?(.success(currentUpload?.responseData))
@@ -126,7 +126,7 @@ extension BackgroundSession: URLSessionDelegate, URLSessionDataDelegate {
         session.finishTasksAndInvalidate()
     }
 
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         print("🚀 BackgroundSession - urlSession:dataTask:didReceive \(data.count) bytes")
         if currentUpload?.responseData == nil {
             currentUpload?.responseData = data

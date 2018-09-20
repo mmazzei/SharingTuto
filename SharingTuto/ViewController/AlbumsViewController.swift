@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SharingTutoFwk
 
 class AlbumsViewController: UITableViewController {
     private enum State {

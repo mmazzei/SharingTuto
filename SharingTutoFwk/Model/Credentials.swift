@@ -8,15 +8,15 @@
 
 import Foundation
 
-struct Credentials: Codable {
+public struct Credentials: Codable {
     let accessToken: String
     let expiresIn: Int
     let tokenType: String
     let refreshToken: String
-    let accountUsername: String
+    public let accountUsername: String
     let accountId: Int
 
-    static func decode(from dict: [String:String]) -> Credentials? {
+    public static func decode(from dict: [String:String]) -> Credentials? {
         guard let accessToken = Credentials.EncodingKeys.accessToken.extract(from: dict),
             let expiresIn = Int(Credentials.EncodingKeys.expiresIn.extract(from: dict) ?? ""),
             let tokenType = Credentials.EncodingKeys.tokenType.extract(from: dict),

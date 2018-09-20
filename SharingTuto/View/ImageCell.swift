@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SharingTutoFwk
 
 class ImageCell: UICollectionViewCell {
     @IBOutlet private weak var imageView: UIImageView! {

@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import SharingTutoFwk
 
 protocol LogInViewControllerDelegate: class {
     func logInViewControllerDidFinish(_ viewController: LogInViewController)

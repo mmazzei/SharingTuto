@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct Image: Codable {
-    let id: String
-    let title: String?
-    let description: String?
-    let link: URL
+public struct Image: Codable {
+    public let id: String
+    public let title: String?
+    public let description: String?
+    public let link: URL
 }

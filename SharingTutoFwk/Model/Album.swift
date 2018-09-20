@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct Album: Codable {
-    let id: String
-    let title: String
-    let description: String?
-    let cover: String? // The ID of the album cover image
+public struct Album: Codable {
+    public let id: String
+    public let title: String
+    public let description: String?
+    public let cover: String? // The ID of the album cover image
 //    var images_count: Int
 }

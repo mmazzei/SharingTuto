@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SharingTutoFwk
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

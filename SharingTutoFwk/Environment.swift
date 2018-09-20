@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct Constants {
-    static let apiBaseUrl = "https://api.imgur.com/3"
-    static let appGroupIdentifier = "group.ar.com.mmazzei.SharingTuto"
+public struct Constants {
+    public static let apiBaseUrl = "https://api.imgur.com/3"
+    public static let appGroupIdentifier = "group.ar.com.mmazzei.SharingTuto"
 
-    static let uploadFinishedNotification = Notification.Name("SharingTuto.uploadFinishedNotification")
+    public static let uploadFinishedNotification = Notification.Name("SharingTuto.uploadFinishedNotification")
 }
 
-struct Environment {
+public struct Environment {
     private init() {}
     private static let credentialsKey = "SharingTuto.credentials"
     private static let backgroundUrlSessionIdentifier = "SharingTuto.backgroundUrlSession"
@@ -23,12 +23,12 @@ struct Environment {
 
     private static let sharedDefaults: UserDefaults = UserDefaults(suiteName: Constants.appGroupIdentifier)!
 
-    static func backgroundSession(withDelegate delegate: URLSessionDelegate) -> URLSession {
+    public static func backgroundSession(withDelegate delegate: URLSessionDelegate) -> URLSession {
         let sessionConfig = URLSessionConfiguration.background(withIdentifier: backgroundUrlSessionIdentifier)
         return URLSession(configuration: sessionConfig, delegate: delegate, delegateQueue: nil)
     }
 
-    static var credentials: Credentials? {
+    public static var credentials: Credentials? {
         get {
             guard let credentialsData = sharedDefaults.data(forKey: credentialsKey),
                 let user = try? PropertyListDecoder().decode(Credentials.self, from: credentialsData) else {
@@ -42,7 +42,7 @@ struct Environment {
         }
     }
 
-    static var uploadTasksRunning: Bool {
+    public static var uploadTasksRunning: Bool {
         get { return sharedDefaults.bool(forKey: uploadTasksRunningKey) }
         set { sharedDefaults.set(newValue, forKey: uploadTasksRunningKey) }
     }
