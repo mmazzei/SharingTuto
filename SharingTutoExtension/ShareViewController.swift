@@ -11,14 +11,23 @@ import Social
 import SharingTutoFwk
 
 class ShareViewController: SLComposeServiceViewController {
-    var album: Album? {
+    fileprivate var album: Album? {
         didSet {
             albumCofigurationItem.value = album?.title ?? "..."
             validateContent()
         }
     }
 
-    lazy var albumCofigurationItem: SLComposeSheetConfigurationItem = {
+    private var imageUrl: URL? {
+        didSet {
+            DispatchQueue.main.async {
+                self.validateContent()
+                self.activityIndicator.stopAnimating()
+            }
+        }
+    }
+
+    private lazy var albumCofigurationItem: SLComposeSheetConfigurationItem = {
         let item = SLComposeSheetConfigurationItem()!
         item.title = "Album"
         item.value = "..."
@@ -26,13 +35,37 @@ class ShareViewController: SLComposeServiceViewController {
         return item
     }()
 
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        view.hidesWhenStopped = true
+        view.startAnimating()
+        return view
+    }()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         BackgroundSession.shared.start()
+
+        guard let context = extensionContext else { return }
+        DispatchQueue.global(qos: .utility).async {
+            context.loadImage {[weak self] (imageUrl) -> Void in
+                self?.imageUrl = imageUrl
+            }
+        }
+    }
+
+    override func loadPreviewView() -> UIView! {
+        guard let previewView = super.loadPreviewView() else {
+            return nil
+        }
+        previewView.addSubview(activityIndicator)
+        activityIndicator.center = CGPoint(x: previewView.bounds.midX, y: previewView.bounds.midY)
+        return previewView
     }
 
     override func isContentValid() -> Bool {
-        return (contentText.count > 3) && (album != nil)
+        return (contentText.count > 3) && (album != nil) && (imageUrl != nil)
     }
 
     override func didSelectPost() {
@@ -41,14 +74,11 @@ class ShareViewController: SLComposeServiceViewController {
             return
         }
 
-        guard let context = extensionContext else { return }
-        DispatchQueue.global(qos: .utility).async {
-            context.loadImage {[weak self] (imageUrl) -> Void in
-                self?.upload(from: imageUrl)
-
-                self?.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
-            }
+        guard let imageUrl = imageUrl else { return }
+        DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+            self?.upload(from: imageUrl)
         }
+        extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }
 
     private func upload(from url: URL) {
