@@ -9,7 +9,20 @@
 import Foundation
 
 public struct Constants {
+    private static let imgurClientId = "e697e3cded0fc0c"
+
     public static let apiBaseUrl = "https://api.imgur.com/3"
+    public static var logInUrl: URL {
+        var urlComponents = URLComponents(string: "https://api.imgur.com")!
+        urlComponents.path.append("/oauth2/authorize")
+        urlComponents.queryItems = [
+            URLQueryItem(name: "client_id", value: imgurClientId),
+            URLQueryItem(name: "response_type", value: "token"),
+            URLQueryItem(name: "state", value: "")
+        ]
+        return urlComponents.url!
+    }
+
     public static let appGroupIdentifier = "group.ar.com.mmazzei.SharingTuto"
 
     public static let uploadFinishedNotification = Notification.Name("SharingTuto.uploadFinishedNotification")

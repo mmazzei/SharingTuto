@@ -22,13 +22,7 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         webView.navigationDelegate = self
 
-        // TODO - Create the URL in a different place
-        guard let url = URL(string: "https://api.imgur.com/oauth2/authorize?client_id=e697e3cded0fc0c&response_type=token&state=stateExample123") else {
-            // TODO - Show an error message
-            return
-        }
-
-        let request = URLRequest(url: url)
+        let request = URLRequest(url: Constants.logInUrl)
         webView.load(request)
     }
 }
