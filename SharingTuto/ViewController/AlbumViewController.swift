@@ -45,10 +45,6 @@ class AlbumViewController: UICollectionViewController {
         super.viewDidLoad()
         state = .loading
         NotificationCenter.default.addObserver(self, selector: #selector(uploadFinished), name: Constants.uploadFinishedNotification, object: nil)
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         updateStateFromModel()
     }
 
