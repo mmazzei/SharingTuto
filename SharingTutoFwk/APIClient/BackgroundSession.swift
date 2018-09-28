@@ -8,27 +8,63 @@
 
 import Foundation
 
-public class BackgroundSession: NSObject {
-    private struct CurrentUpload {
-        var responseData: Data?
-        var callback: ((Result<Data?>) -> Void)?
-        var task: URLSessionUploadTask
-        // Because upload tasks from data are not supported in background sessions, we are saving the data into a temporary file.
-        var temporaryFile: URL
+private struct CurrentUpload: Codable {
+    var responseData: Data?
+    let callback: ((Result<Data?>) -> Void)?
+    let task: URLSessionUploadTask?
+    // Because upload tasks from data are not supported in background sessions, we are saving the data into a temporary file.
+    let temporaryFile: URL
+
+    enum CodingKeys: String, CodingKey {
+        case responseData
+        case temporaryFile
+        case task
+    }
+}
+
+// In a extension, to keep the struct default initializer.
+extension CurrentUpload {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        responseData = try values.decode((Data?).self, forKey: .responseData)
+        temporaryFile = try values.decode(URL.self, forKey: .temporaryFile)
+        callback = nil
+        task = nil
     }
 
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(responseData, forKey: .responseData)
+        try container.encode(temporaryFile, forKey: .temporaryFile)
+    }
+}
+
+
+public class BackgroundSession: NSObject {
     public static let shared = BackgroundSession()
     public var isUploadingNow: Bool {
-        return Environment.uploadTasksRunning
+        return currentUpload != nil
     }
 
     private var session: URLSession?
     private var backgroundCompletionHandler: (() -> Void)?
+
+    private static var currentUploadKey = "BackgroundSession.currentUpload"
     private var currentUpload: CurrentUpload? {
-        willSet {
+        get {
+            guard let currentUploadData = Environment.sharedDefaults.data(forKey: BackgroundSession.currentUploadKey),
+                let currentUpload = try? PropertyListDecoder().decode(CurrentUpload.self, from: currentUploadData) else {
+                    return nil
+            }
+            return currentUpload
+        }
+        set {
             if newValue == nil, currentUpload != nil {
                 _ = try? FileManager.default.removeItem(at: currentUpload!.temporaryFile)
             }
+
+            let currentUploadData = try? PropertyListEncoder().encode(newValue)
+            Environment.sharedDefaults.set(currentUploadData, forKey: BackgroundSession.currentUploadKey)
         }
     }
 
@@ -36,8 +72,17 @@ public class BackgroundSession: NSObject {
         super.init()
     }
 
+    // It looks like the singleton object is kept in memory between succesive calls of the share extension
+    // if the host app is not killed. So we needed to add this method to be called each time the extension
+    // starts to clean up and forgot the old session.
+    public func start() {
+        session?.finishTasksAndInvalidate()
+        session = nil
+        initSession()
+    }
+
     public func uploadTask(with request: URLRequest, from data: Data, callback: @escaping (Result<Data?>) -> Void) {
-        guard session == nil, !Environment.uploadTasksRunning else {
+        guard !isUploadingNow else {
             print("🚀 BackgroundSession - Another upload is being processed right now, please retry again later.")
             return
         }
@@ -53,13 +98,10 @@ public class BackgroundSession: NSObject {
             return
         }
 
-        session = Environment.backgroundSession(withDelegate: self)
-
+        initSession()
         let task = session?.uploadTask(with: request, fromFile: temporaryFileUrl)
-        currentUpload = CurrentUpload(responseData: nil, callback: callback, task: task!, temporaryFile: temporaryFileUrl)
+        currentUpload = CurrentUpload(responseData: nil, callback: callback, task: task, temporaryFile: temporaryFileUrl)
         task?.resume()
-
-        Environment.uploadTasksRunning = true
     }
 
     public func cancelUpload() {
@@ -69,7 +111,6 @@ public class BackgroundSession: NSObject {
 
         // This could happen if app crashed
         if session == nil {
-            Environment.uploadTasksRunning = false
             NotificationCenter.default.post(Notification(name: Constants.uploadFinishedNotification))
         }
     }
@@ -78,7 +119,10 @@ public class BackgroundSession: NSObject {
     public func handleEvents(completionHandler: @escaping () -> Void) {
         print("🚀 BackgroundSession - handleEvents")
         backgroundCompletionHandler = completionHandler
-        // In case the app has been terminated and opened to finish processing the BG events.
+        initSession()
+    }
+
+    private func initSession() {
         if session == nil {
             session = Environment.backgroundSession(withDelegate: self)
         }
@@ -107,8 +151,9 @@ extension BackgroundSession: URLSessionDelegate, URLSessionDataDelegate {
         if error != nil {
             currentUpload?.callback?(.error(error!))
         }
-        Environment.uploadTasksRunning = false
-        self.session = nil
+        if session == self.session {
+            self.session = nil
+        }
         currentUpload = nil
 
         NotificationCenter.default.post(Notification(name: Constants.uploadFinishedNotification))

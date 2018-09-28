@@ -94,6 +94,7 @@ public struct ImgurAPI {
             }.resume()
     }
 
+    /// Only supports jpeg images for now.
     public static func uploadImage(_ imageData: Data, titled title: String, into album: Album, _ callback: @escaping (Result<Image>) -> Void) {
         var urlComponents = URLComponents(string: Constants.apiBaseUrl)!
         urlComponents.path.append("/image")
@@ -104,6 +105,7 @@ public struct ImgurAPI {
         var request = URLRequest(url: urlComponents.url!)
         request.httpMethod = "POST"
         request.addAuthHeader()
+        // The jpeg restriction is just because this
         request.setValue("image/jpeg", forHTTPHeaderField: "content-type")
         request.httpBody = imageData
 

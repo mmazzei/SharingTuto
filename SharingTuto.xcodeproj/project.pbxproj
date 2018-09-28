@@ -26,6 +26,8 @@
 		4DBA977021405E510056A019 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBA976F21405E510056A019 /* ImageCell.swift */; };
 		4DC057A821402C2E00F13562 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC057A721402C2E00F13562 /* HomeViewController.swift */; };
 		4DC057B7214054AF00F13562 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC057B6214054AF00F13562 /* AlbumsViewController.swift */; };
+		4DD4C79F215E524900DD60B6 /* NSExtensionContext+SharingTuto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4C79E215E524900DD60B6 /* NSExtensionContext+SharingTuto.swift */; };
+		4DD4C7A1215E626000DD60B6 /* SharingTutoFwk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D172802215459F1003256BC /* SharingTutoFwk.framework */; };
 		4DDCEF8D21304D0200C39C15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDCEF8C21304D0200C39C15 /* AppDelegate.swift */; };
 		4DDCEF8F21304D0200C39C15 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDCEF8E21304D0200C39C15 /* LogInViewController.swift */; };
 		4DDCEF9221304D0200C39C15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DDCEF9021304D0200C39C15 /* Main.storyboard */; };
@@ -98,6 +100,7 @@
 		4DBA976F21405E510056A019 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		4DC057A721402C2E00F13562 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4DC057B6214054AF00F13562 /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
+		4DD4C79E215E524900DD60B6 /* NSExtensionContext+SharingTuto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSExtensionContext+SharingTuto.swift"; sourceTree = "<group>"; };
 		4DDCEF8921304D0200C39C15 /* SharingTuto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SharingTuto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DDCEF8C21304D0200C39C15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DDCEF8E21304D0200C39C15 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DD4C7A1215E626000DD60B6 /* SharingTutoFwk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +180,7 @@
 				4D40E57F2139823700F2040A /* MainInterface.storyboard */,
 				4D40E5822139823700F2040A /* Info.plist */,
 				4D40E58C213989B400F2040A /* ChooseAlbumViewController.swift */,
+				4DD4C79E215E524900DD60B6 /* NSExtensionContext+SharingTuto.swift */,
 			);
 			path = SharingTutoExtension;
 			sourceTree = "<group>";
@@ -470,6 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DD4C79F215E524900DD60B6 /* NSExtensionContext+SharingTuto.swift in Sources */,
 				4D40E57E2139823700F2040A /* ShareViewController.swift in Sources */,
 				4D40E58D213989B400F2040A /* ChooseAlbumViewController.swift in Sources */,
 			);

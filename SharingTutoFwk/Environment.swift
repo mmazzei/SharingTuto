@@ -19,13 +19,22 @@ public struct Environment {
     private init() {}
     private static let credentialsKey = "SharingTuto.credentials"
     private static let backgroundUrlSessionIdentifier = "SharingTuto.backgroundUrlSession"
+    private static let sharedContainerIdentifier = Constants.appGroupIdentifier
     private static let uploadTasksRunningKey = "SharingTuto.uploadTasksRunning"
 
-    private static let sharedDefaults: UserDefaults = UserDefaults(suiteName: Constants.appGroupIdentifier)!
+    public static let sharedDefaults: UserDefaults = UserDefaults(suiteName: Constants.appGroupIdentifier)!
 
     public static func backgroundSession(withDelegate delegate: URLSessionDelegate) -> URLSession {
         let sessionConfig = URLSessionConfiguration.background(withIdentifier: backgroundUrlSessionIdentifier)
+        sessionConfig.sharedContainerIdentifier = sharedContainerIdentifier
         return URLSession(configuration: sessionConfig, delegate: delegate, delegateQueue: nil)
+    }
+
+    /// Shared directory for App and its extensions
+    public static var sharedContainerUrl: URL {
+        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier:
+            // It needs to be put in the "Library/Cache" dir as the extension has troubles writing in "/": https://forums.developer.apple.com/thread/45736
+            sharedContainerIdentifier)!.appendingPathComponent("Library/Caches")
     }
 
     public static var credentials: Credentials? {
@@ -40,10 +49,5 @@ public struct Environment {
             let credentialsData = try? PropertyListEncoder().encode(newValue)
             sharedDefaults.set(credentialsData, forKey: credentialsKey)
         }
-    }
-
-    public static var uploadTasksRunning: Bool {
-        get { return sharedDefaults.bool(forKey: uploadTasksRunningKey) }
-        set { sharedDefaults.set(newValue, forKey: uploadTasksRunningKey) }
     }
 }
